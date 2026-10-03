@@ -45,6 +45,20 @@ svg {
   color: #130d08;
 }
 
+.menu-browser,
+.menu-browser * {
+  letter-spacing: 0;
+}
+
+.menu-browser details[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.menu-browser summary,
+.menu-browser button {
+  scroll-margin-top: 320px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

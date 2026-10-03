@@ -10,9 +10,9 @@ export const menuCategories: MenuCategory[] = [
     tone: "ember",
     items: [
       {
-        name: "Ceviche de Chicharron",
+        name: "Ceviche de Chicharrón",
         description:
-          "Chicharron crocante en ceviche citrico con vegetales frescos y cilantro sobre patacon, decorado con hummus de remolacha.",
+          "Chicharrón crocante en ceviche cítrico con vegetales frescos y cilantro sobre patacón, decorado con hummus de remolacha.",
         price: "$26.000",
         image: "/images/entradas/ceviche-chicharron.jpg",
       },
@@ -24,8 +24,10 @@ export const menuCategories: MenuCategory[] = [
       },
       {
         name: "Mini Empanadas",
-        description: "Cinco mini empanadas de pulled pork con aji de mani de la casa.",
+        description: "Cinco mini empanadas de pulled pork con ají de maní de la casa.",
         price: "$22.000",
+        image: "/images/entradas/mini-empanadas.webp",
+        imageFit: "contain",
       },
     ],
   },
@@ -33,7 +35,7 @@ export const menuCategories: MenuCategory[] = [
     id: "carnes",
     eyebrow: "Al fuego",
     title: "Carnes",
-    description: "Cortes contundentes con acompanamientos clasicos y lectura premium.",
+    description: "Cortes de res a la parrilla con sus acompañamientos.",
     tone: "charcoal",
     items: [
       {
@@ -62,7 +64,7 @@ export const menuCategories: MenuCategory[] = [
     id: "cerdo",
     eyebrow: "Glaseado",
     title: "Cerdo",
-    description: "Sabores ahumados, BBQ y grasa noble para una seccion densa y apetecible.",
+    description: "Costillas BBQ y lomo de cerdo a la brasa.",
     tone: "crimson",
     items: [
       {
@@ -82,7 +84,7 @@ export const menuCategories: MenuCategory[] = [
     id: "pollo",
     eyebrow: "Dorado",
     title: "Pollo",
-    description: "Platos de pollo con salsas, gratinados y tecnicas de grill.",
+    description: "Platos de pollo con salsas, gratinados y técnicas de grill.",
     tone: "ember",
     items: [
       {
@@ -92,14 +94,14 @@ export const menuCategories: MenuCategory[] = [
         image: "/images/pollo/pechuga-plancha.jpg",
       },
       {
-        name: "Gratinada Champinones",
-        description: "Pechuga con bechamel, champinones y queso fundido, con papas y ensalada.",
+        name: "Pechuga gratinada con champiñones",
+        description: "320 gr de pechuga con salsa bechamel, champiñones y queso fundido, acompañada de papas a la francesa, croqueta de yuca y ensalada.",
         price: "$42.000",
         image: "/images/pollo/pechuga-gratinada.jpg",
       },
       {
         name: "Cordon Blue",
-        description: "250gr de pechuga envuelta en tocineta y rellena de jamon y queso, banada en salsa de frutos amarillos, con papa francesa y ensalada.",
+        description: "250gr de pechuga envuelta en tocineta y rellena de jamón y queso, bañada en salsa de frutos amarillos, con papa francesa y ensalada.",
         price: "$42.000",
         image: "/images/pollo/cordon-blue.jpg",
       },
@@ -109,7 +111,7 @@ export const menuCategories: MenuCategory[] = [
     id: "hamburguesas",
     eyebrow: "Signature",
     title: "Hamburguesas",
-    description: "Altura, salsas de casa y toppings intensos con personalidad Mangia.",
+    description: "Todas nuestras hamburguesas están acompañadas de papas a la francesa.",
     tone: "charcoal",
     items: [
       {
@@ -128,7 +130,7 @@ export const menuCategories: MenuCategory[] = [
       },
       {
         name: "Chori Burger",
-        description: "120gr de carne jugosa, chorizo premium banado en chimichurri, queso cheddar, queso mozzarella, cebolla crispy y salsa de la casa.",
+        description: "120gr de carne jugosa, chorizo premium bañado en chimichurri, queso cheddar, queso mozzarella, cebolla crispy y salsa de la casa.",
         price: "$34.000",
         image: "/images/burgers/chori-burger.jpg",
       },
@@ -139,7 +141,7 @@ export const menuCategories: MenuCategory[] = [
         image: "/images/burgers/doble-carne.jpg",
       },
       {
-        name: "Clasica",
+        name: "Clásica",
         description: "120gr de carne jugosa, queso mozzarella, queso cheddar, tocineta, cebolla crispy y salsa de la casa.",
         price: "$24.000",
         image: "/images/burgers/clasica-burger.jpg",
@@ -160,7 +162,7 @@ export const menuCategories: MenuCategory[] = [
       },
       {
         name: "Papas Pollo",
-        description: "Pollo desmechado, maiz, chorizo, papas a la francesa, queso fundido, cilantro, cebolla crispy y salsa de la casa.",
+        description: "Pollo desmechado, maíz, chorizo, papas a la francesa, queso fundido, cilantro, cebolla crispy y salsa de la casa.",
         price: "$23.000",
         image: "/images/papas/papas-pollo.jpg",
       },
@@ -170,19 +172,19 @@ export const menuCategories: MenuCategory[] = [
     id: "picadas",
     eyebrow: "Para compartir",
     title: "Picadas",
-    description: "Abundancia visual, grill y textura para mesas de celebracion.",
+    description: "Abundancia visual, grill y textura para mesas de celebración.",
     tone: "crimson",
     items: [
       {
         name: "Picada Personal",
-        description: "Pechuga a la plancha, carne asada, costilla de cerdo BBQ, chicharron, chorizo, morcilla, bites de queso frito, papa criolla casco, monedas de platano, queso rallado, chimichurri y ensalada.",
+        description: "Pechuga a la plancha, carne asada, costilla de cerdo BBQ, chicharrón, chorizo, morcilla, bites de queso frito, papa criolla casco, monedas de plátano, queso rallado, chimichurri y ensalada.",
         price: "$40.000",
         image: "/images/picadas/picada-personal.jpg",
         featured: true,
       },
       {
         name: "Picada Criolla x4",
-        description: "Pechuga a la plancha, carne asada, costilla de cerdo BBQ, chicharron, chorizo, morcilla, bites de queso frito, papa criolla casco, monedas de platano, queso rallado, chimichurri y ensalada.",
+        description: "Pechuga a la plancha, carne asada, costilla de cerdo BBQ, chicharrón, chorizo, morcilla, bites de queso frito, papa criolla casco, monedas de plátano, queso rallado, chimichurri y ensalada.",
         price: "$115.000",
         image: "/images/picadas/picada-criolla.jpg",
       },
@@ -192,7 +194,7 @@ export const menuCategories: MenuCategory[] = [
     id: "perros",
     eyebrow: "Street premium",
     title: "Perros",
-    description: "Perros con toppings generosos, salsas de casa y estilo gastrobar.",
+    description: "Todos nuestros perros están acompañados de papas a la francesa.",
     tone: "charcoal",
     items: [
       {
@@ -217,19 +219,28 @@ export const menuCategories: MenuCategory[] = [
     id: "infantil",
     eyebrow: "Kids",
     title: "Infantil",
-    description: "Opciones familiares con porciones claras y acompanamientos conocidos.",
+    description: "Opciones familiares con porciones claras y acompañamientos conocidos.",
     tone: "cream",
     items: [
-      { name: "Chicken Nuggets", description: "Nuggets de pollo con papas francesas, golosina, salsa de tomate y jugo hit.", price: "$23.000" },
+      { name: "Chicken Nuggets", description: "150 gr de croquetas de pollo con papas a la francesa, golosina, salsa de tomate y Jugo Hit de cajita.", price: "$23.000" },
       { name: "Salchipapa Mini", description: "Papa francesa con salchicha Fazenda, salsa de tomate, golosina y jugo hit.", price: "$23.000" },
-      { name: "Desgranado Casa Mangia", description: "Papas a la francesa, maiz, chorizo, pollo y cerdo en cubos, queso fundido, papa ripio, cebolla crispy, cilantro y salsa de la casa.", price: "$23.000" },
+    ],
+  },
+  {
+    id: "desgranados",
+    eyebrow: "Casa Mangia",
+    title: "Desgranados",
+    description: "Papas, maíz, carnes y queso fundido con salsa de la casa.",
+    tone: "ember",
+    items: [
+      { name: "Desgranado Casa Mangia", description: "Papas a la francesa, maíz, chorizo, pollo y cerdo en cubos, queso fundido, papa ripio, cebolla crispy, cilantro y salsa de la casa.", price: "$23.000" },
     ],
   },
   {
     id: "adicionales",
     eyebrow: "Extras",
     title: "Adicionales",
-    description: "Pequenos upgrades para personalizar cada plato.",
+    description: "Acompañamientos adicionales para tu plato.",
     tone: "cream",
     items: [
       { name: "Papas a la francesa", price: "$6.000" },
@@ -240,25 +251,25 @@ export const menuCategories: MenuCategory[] = [
   },
   {
     id: "bebidas",
-    eyebrow: "Bar frio",
+    eyebrow: "Bar frío",
     title: "Bebidas",
-    description: "Clasicos frios para acompanar grill, burgers y postres.",
+    description: "Clásicos fríos para acompañar grill, burgers y postres.",
     tone: "charcoal",
     items: [
       { name: "Agua 600ml", price: "$3.000" },
       { name: "Agua con gas 250ml", price: "$2.500" },
       { name: "Ginger Ale Canada Dry", price: "$4.000" },
-      { name: "Bretana", price: "$4.000" },
-      { name: "Soda Hatsu frambuesa y rosas / sandia y limon", price: "$6.000" },
+      { name: "Bretaña", price: "$4.000" },
+      { name: "Soda Hatsu frambuesa y rosas / sandía y limón", price: "$6.000" },
       { name: "Gaseosa Coca Cola 400ml", price: "$5.000" },
       { name: "Gaseosa Coca Cola Zero 400ml", price: "$5.000" },
       { name: "Gaseosa Coca Cola 1.5l", price: "$10.000" },
-      { name: "Gaseosa Postobon 500ml", price: "$5.000" },
-      { name: "Gaseosa Postobon 1.5l", price: "$10.000" },
-      { name: "Gaseosa Postobon 2.5l", price: "$14.000" },
+      { name: "Gaseosa Postobón 500ml", price: "$5.000" },
+      { name: "Gaseosa Postobón 1.5l", price: "$10.000" },
+      { name: "Gaseosa Postobón 2.5l", price: "$14.000" },
       { name: "Speed Max 310ml", price: "$3.000" },
       { name: "Speed Max Borondo 473ml", price: "$5.000" },
-      { name: "Te Mr Tea", price: "$4.000" },
+      { name: "Té Mr Tea", price: "$4.000" },
       { name: "Jugo Hit cajita 200ml", price: "$3.000" },
     ],
   },
@@ -270,8 +281,8 @@ export const menuCategories: MenuCategory[] = [
     tone: "cream",
     items: [
       { name: "Limonada de Cereza", price: "$11.000" },
-      { name: "Maracuya", price: "$12.000" },
-      { name: "Limon", price: "$10.000" },
+      { name: "Maracuyá", price: "$12.000" },
+      { name: "Limón", price: "$10.000" },
       { name: "Jarra de Limonada", price: "$23.000" },
       { name: "Jarra de Cerezada", price: "$29.000" },
       { name: "Limonada de coco", price: "$20.000" },
@@ -286,14 +297,14 @@ export const menuCategories: MenuCategory[] = [
     items: [
       { name: "Frutos Rojos", price: "$13.000" },
       { name: "Frutos amarillos", price: "$13.000" },
-      { name: "Clasica de limon", price: "$7.000" },
+      { name: "Clásica de limón", price: "$7.000" },
     ],
   },
   {
     id: "cervezas",
     eyebrow: "Beer",
     title: "Cervezas",
-    description: "Botellas frias para acompanar fuego, burger y picadas.",
+    description: "Botellas frías para acompañar fuego, burger y picadas.",
     tone: "charcoal",
     items: [
       { name: "Modelo Especial", price: "$15.000" },
@@ -310,34 +321,22 @@ export const menuCategories: MenuCategory[] = [
     id: "cocktails",
     eyebrow: "Signature bar",
     title: "Cocktails",
-    description: "Cocteleria frozen, luminosa y social para elevar la noche.",
+    description: "Coctelería frozen, luminosa y social para elevar la noche.",
     tone: "crimson",
     items: cocktails,
   },
   {
     id: "heladeria",
     eyebrow: "Cream",
-    title: "Heladeria",
-    description: "La otra mitad de Mangia: helados, salsas, toppings y postres de alto impacto visual.",
+    title: "Heladería",
+    description: "Conos, postres, malteadas y sabores para elegir tu antojo.",
     tone: "cream",
     items: [
       {
         name: "Cono Junior",
-        description: "Helado artesanal en formato clasico.",
-        price: "$7.000",
+        description: "1 bola de helado de 70 gr. Sabores: vainilla y macadamia.",
+        price: "$3.900",
         image: "/images/Heladeria/cono-junior.jpg",
-      },
-      {
-        name: "Sabores Vitrina",
-        description: "Seleccion de sabores para elegir combinaciones premium.",
-        price: "Desde $7.000",
-        image: "/images/Heladeria/sabores.jpg",
-      },
-      {
-        name: "Conos dobles",
-        description: "Doble bola con cono crocante.",
-        price: "$12.000",
-        image: "/images/Heladeria/conos-dobles.jpg",
       },
     ],
   },
@@ -345,32 +344,32 @@ export const menuCategories: MenuCategory[] = [
     id: "conos-1-bola",
     eyebrow: "Ice cream",
     title: "Conos 1 bola",
-    description: "Una bola de helado artesanal en cono crocante.",
+    description: "Una bola de helado de 90 gr en cono. Elige entre sabores Gourmet y Exclusivos.",
     tone: "cream",
     items: [
-      { name: "Cono 1 bola", price: "$7.500" },
-      { name: "Cono junior", price: "$7.000", image: "/images/Heladeria/cono-junior.jpg" },
+      { name: "Cono 1 bola Gourmet", price: "$7.500" },
+      { name: "Cono 1 bola Exclusivo", price: "$9.500" },
     ],
   },
   {
     id: "conos-2-bolas",
     eyebrow: "Ice cream",
     title: "Conos 2 bolas",
-    description: "Doble sabor, doble textura y presencia visual.",
+    description: "Dos bolas de helado en cono. Elige entre sabores Gourmet y Exclusivos.",
     tone: "cream",
     items: [
-      { name: "Cono 2 bolas", price: "$12.000", image: "/images/Heladeria/conos-dobles.jpg" },
-      { name: "Cono premium", description: "Dos bolas con salsa y topping.", price: "$14.000" },
+      { name: "Cono 2 bolas Gourmet", price: "$9.900", image: "/images/Heladeria/conos-dobles.jpg" },
+      { name: "Cono 2 bolas Exclusivo", price: "$11.900" },
     ],
   },
   {
     id: "affogato",
-    eyebrow: "Cafe & cream",
+    eyebrow: "Café & cream",
     title: "Affogato",
-    description: "Helado con espresso: contraste caliente, frio y cremoso.",
+    description: "Helado con espresso: contraste caliente, frío y cremoso.",
     tone: "charcoal",
     items: [
-      { name: "Affogato clasico", description: "Helado de vainilla con espresso.", price: "$14.000", image: "/images/desserts/affogato.jpg" },
+      { name: "Affogato", description: "1 bola de helado de vainilla bañada en café espresso.", price: "$12.000", image: "/images/desserts/affogato.jpg" },
     ],
   },
   {
@@ -380,17 +379,17 @@ export const menuCategories: MenuCategory[] = [
     description: "Helado premium coronado con salsas, textura y toppings.",
     tone: "cream",
     items: [
-      { name: "Sundae Mangia", description: "Helado, salsa artesanal, topping y chantilly.", price: "$15.000" },
+      { name: "Sundae", description: "2 bolas de helado con chantilly, fresa, brownie y salsa de chocolate.", price: "$18.900" },
     ],
   },
   {
     id: "banana-split",
     eyebrow: "Dessert",
     title: "Banana Split",
-    description: "Tres bolas, fruta, crema y salsa en formato clasico de heladeria.",
+    description: "Tres bolas, fruta, crema y salsa en formato clásico de heladería.",
     tone: "cream",
     items: [
-      { name: "Banana Split", description: "3 bolas de helado con chantilly, cereza, banano y chocolate.", price: "$16.000", image: "/images/desserts/banana.jpg" },
+      { name: "Banana Split", description: "3 bolas de helado con chantilly, cereza, banano y salsa de chocolate.", price: "$17.900", image: "/images/desserts/banana.jpg" },
     ],
   },
   {
@@ -400,7 +399,7 @@ export const menuCategories: MenuCategory[] = [
     description: "Waffle caliente con helado, salsas y toppings.",
     tone: "cream",
     items: [
-      { name: "Waffle Ice Cream", description: "Waffle dorado con helado artesanal y salsa.", price: "$18.000" },
+      { name: "Waffle", description: "Waffle con 1 bola de helado y 2 toppings a elección.", price: "$16.000" },
     ],
   },
   {
@@ -410,7 +409,17 @@ export const menuCategories: MenuCategory[] = [
     description: "Fruta, hielo, color y frescura para un cierre tropical.",
     tone: "cream",
     items: [
-      { name: "Cholado", description: "Frutas frescas, hielo artesanal y explosion tropical.", price: "$15.000", image: "/images/desserts/cholado.jpg" },
+      { name: "Cholado 8 oz", description: "3 frutas a elección entre fresa, pulpa de maracuyá, cereza y durazno, con miel y leche condensada.", price: "$13.000", image: "/images/desserts/cholado.jpg" },
+    ],
+  },
+  {
+    id: "parfait",
+    eyebrow: "Fruta y yogur",
+    title: "Parfait",
+    description: "Yogur griego, fruta y granola.",
+    tone: "cream",
+    items: [
+      { name: "Parfait 8 oz", description: "Yogur griego con 3 frutas, granola y 1 salsa.", price: "$16.500" },
     ],
   },
   {
@@ -420,20 +429,17 @@ export const menuCategories: MenuCategory[] = [
     description: "Mezclas cremosas con helado gourmet, salsas y toppings.",
     tone: "cream",
     items: [
-      { name: "Malteada de vainilla", price: "$17.000" },
-      { name: "Malteada de chocolate", price: "$17.000" },
-      { name: "Malteada de fresa", price: "$17.000" },
-      { name: "Malteada cookies", price: "$18.000" },
+      { name: "Malteada 12 oz", description: "Sabor a elección según vitrina, coronada con chantilly y salsa de chocolate.", price: "$16.900" },
     ],
   },
   {
     id: "brownies-con-helado",
     eyebrow: "Warm dessert",
     title: "Brownies con helado",
-    description: "Brownie caliente, helado frio y salsa premium.",
+    description: "Brownie caliente, helado frío y salsa premium.",
     tone: "cream",
     items: [
-      { name: "Brownie con helado", description: "Brownie caliente con helado artesanal y chocolate.", price: "$18.000", image: "/images/Heladeria/brownie.jpg" },
+      { name: "Brownie con helado", description: "Brownie con 1 bola de helado y salsa de chocolate.", price: "$13.900", image: "/images/Heladeria/brownie.jpg" },
     ],
   },
   {
@@ -443,29 +449,23 @@ export const menuCategories: MenuCategory[] = [
     description: "Frutas, salsas y crocantes para personalizar la vitrina.",
     tone: "cream",
     items: [
-      { name: "Frutas", description: "Fresa, arandanos, durazno, banano y cereza." },
-      { name: "Salsas", description: "Chocolate, arequipe, frutos rojos y frutos amarillos." },
-      { name: "Crocantes", description: "Oreo, M&M, mini chips, gomitas y brownie." },
-      { name: "Premium", description: "Cherry Mania, Pina Colada, Milky Way, Juan Valdez y crema de limon." },
+      { name: "Frutas", description: "Fresa, arándanos, durazno, banano y cereza.", price: "$2.000" },
+      { name: "Salsas", description: "Chocolate, arequipe, frutos rojos y frutos amarillos.", price: "$2.000" },
+      { name: "Frutos secos", description: "Maní y coco deshidratado.", price: "$2.000" },
+      { name: "Otros toppings", description: "Brownie, Piazza, mini chips, Oreo, moritas y gomitas de gusanito.", price: "$2.000" },
+      { name: "Bola adicional Gourmet", description: "1 bola de helado de 90 gr.", price: "$3.900" },
+      { name: "Bola adicional Exclusivo", description: "1 bola de helado de 90 gr.", price: "$4.900" },
     ],
   },
   {
     id: "sabores",
     eyebrow: "Vitrina",
     title: "Sabores",
-    description: "Sabores disponibles segun vitrina del dia.",
+    description: "Elige entre sabores Gourmet y Exclusivos, según disponibilidad en vitrina.",
     tone: "cream",
     items: [
-      { name: "Vainilla" },
-      { name: "Chocolate" },
-      { name: "Fresa" },
-      { name: "Arequipe" },
-      { name: "Brownie" },
-      { name: "Frutos rojos" },
-      { name: "Mango" },
-      { name: "Maracuya" },
-      { name: "Cafe" },
-      { name: "Cookies" },
+      { name: "Gourmet", description: "Vainilla, macadamia, chocolate y frutos del bosque.", image: "/images/Heladeria/sabores.jpg" },
+      { name: "Exclusivos", description: "Cherry Mania, Juan Valdez, crema de limón, brownie, piña colada, Oreo, M&M y Milky Way." },
     ],
   },
 ];

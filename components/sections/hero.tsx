@@ -42,7 +42,7 @@ export function Hero() {
           <Reveal delay={0.24}>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <PremiumButton href="#reserve">Reservar mesa</PremiumButton>
-              <PremiumButton href="#menu" variant="ghost">Explorar menu</PremiumButton>
+              <PremiumButton href="#menu" variant="ghost">Explorar menú</PremiumButton>
             </div>
           </Reveal>
         </div>

@@ -27,8 +27,8 @@ export function IceCreamExperience() {
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <SectionHeading
             eyebrow="Mangia Grill & Cream"
-            title="La heladeria como final editorial, no como anexo."
-            description="Conos, affogato, sundae, banana split, waffle, cholado, malteadas, brownies, toppings y sabores conviven como una experiencia visual propia."
+            title="Helados y postres Mangia"
+            description="Conos, banana split, cholados, malteadas y postres con tus sabores favoritos."
           />
           <Reveal>
             <MediaFrame

@@ -3,20 +3,20 @@ import type { MenuItem } from "@/types/menu";
 export const cocktails: MenuItem[] = [
   {
     name: "Blue Margarita",
-    description: "Tequila, arandano, limon y soda.",
+    description: "Tequila, arándano, jugo de limón y soda.",
     price: "$20.000",
     image: "/images/cocktails/blue-margarita.jpg",
     featured: true,
   },
   {
     name: "Frozen Daiquiri",
-    description: "Ron blanco, fresa, limon e hielo.",
+    description: "Ron blanco, fresa, jugo de limón e hielo.",
     price: "$20.000",
     image: "/images/cocktails/frozen-daiquiri.jpg",
   },
   {
-    name: "Pina Colada",
-    description: "Ron blanco, pina, leche condensada y crema de coco.",
+    name: "Piña Colada",
+    description: "Ron blanco, piña, leche condensada y crema de coco, coronada con cereza.",
     price: "$20.000",
     image: "/images/cocktails/pina-colada.jpg",
   },

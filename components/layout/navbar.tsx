@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, Phone, X } from "lucide-react";
+import { InstagramIcon } from "@/components/ui/instagram-icon";
 import { useEffect, useState } from "react";
 import { navItems, siteConfig, whatsappUrl } from "@/data/site";
 import { slugify } from "@/lib/menu";
@@ -51,6 +52,17 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <a
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Instagram de Mangia: ${siteConfig.instagramHandle}`}
+            title={`Síguenos en Instagram: ${siteConfig.instagramHandle}`}
+            className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg border border-[#f4b6cc]/40 bg-[#492232]/70 px-3 text-sm font-medium text-[#ffe1ec] transition hover:bg-[#653044] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4b6cc]"
+          >
+            <InstagramIcon className="h-5 w-5 shrink-0" />
+            <span className="hidden xl:inline">Instagram</span>
+          </a>
+          <a
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
@@ -74,7 +86,7 @@ export function Navbar() {
 
       {open ? (
         <div className="lg:hidden">
-          <div className="mx-4 mt-3 overflow-hidden rounded-3xl border border-white/10 bg-[#070504]/96 p-3 shadow-2xl backdrop-blur-2xl">
+          <div className="mx-4 mt-3 max-h-[calc(100dvh-100px)] overflow-y-auto rounded-3xl border border-white/10 bg-[#070504]/96 p-3 shadow-2xl backdrop-blur-2xl">
             {navItems.map((item, index) => (
               <a
                 key={`mobile-nav-${slugify(item.href)}-${index}`}
@@ -85,6 +97,15 @@ export function Navbar() {
                 {item.label}
               </a>
             ))}
+            <a
+              href={siteConfig.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="flex min-h-12 items-center gap-3 rounded-lg border border-[#f4b6cc]/30 bg-[#492232]/50 px-4 py-3 text-sm text-[#ffe1ec] focus-visible:outline-2 focus-visible:outline-[#f4b6cc]"
+            >
+              <InstagramIcon className="h-5 w-5 shrink-0" />
+              <span className="min-w-0 break-words">Síguenos en Instagram<span className="mt-1 block text-xs">{siteConfig.instagramHandle}</span></span>
+            </a>
             <a
               href={whatsappUrl}
               target="_blank"

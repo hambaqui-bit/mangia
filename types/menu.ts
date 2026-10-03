@@ -8,6 +8,7 @@ export type MenuCategoryId =
   | "picadas"
   | "perros"
   | "infantil"
+  | "desgranados"
   | "adicionales"
   | "bebidas"
   | "granizados"
@@ -22,6 +23,7 @@ export type MenuCategoryId =
   | "banana-split"
   | "waffle-ice-cream"
   | "cholado"
+  | "parfait"
   | "malteadas"
   | "brownies-con-helado"
   | "toppings"
@@ -36,6 +38,7 @@ export type MenuItem = {
   description?: string;
   price?: string;
   image?: string;
+  imageFit?: "contain";
   tags?: string[];
   featured?: boolean;
 };

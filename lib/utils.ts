@@ -8,6 +8,7 @@ export function buildWhatsAppReservationUrl(input: {
   time?: string;
   people?: string;
   note?: string;
+  decoration?: string;
   baseUrl: string;
 }) {
   const message = encodeURIComponent(
@@ -18,6 +19,7 @@ export function buildWhatsAppReservationUrl(input: {
       `Hora: ${input.time || "N/D"}`,
       `Personas: ${input.people || "N/D"}`,
       `Ocasion: ${input.note || "N/D"}`,
+      ...(input.decoration ? [input.decoration] : []),
     ].join("\n"),
   );
 

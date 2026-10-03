@@ -3,17 +3,20 @@
 import { CalendarDays, Clock3, MapPin, Phone } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { PremiumButton } from "@/components/ui/premium-button";
+import { DecorationOption } from "@/components/ui/decoration-request";
+import { decorationMessage, type DecorationRequest } from "@/lib/group-order";
 import { siteConfig, whatsappUrl } from "@/data/site";
 import { slugify } from "@/lib/menu";
 import { buildWhatsAppReservationUrl } from "@/lib/utils";
 
 export function ReservationsSection() {
   const [form, setForm] = useState({ name: "", date: "", time: "", people: "", note: "" });
+  const [decoration, setDecoration] = useState<DecorationRequest>({ enabled: false, occasion: "", notes: "" });
 
   function submitReservation(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     window.open(
-      buildWhatsAppReservationUrl({ ...form, baseUrl: whatsappUrl }),
+      buildWhatsAppReservationUrl({ ...form, decoration: decorationMessage(decoration), baseUrl: whatsappUrl }),
       "_blank",
       "noopener,noreferrer",
     );
@@ -110,6 +113,7 @@ export function ReservationsSection() {
                   className="resize-none rounded-2xl border border-white/10 bg-white/[0.055] px-4 py-3 text-white outline-none transition focus:border-[#e6bd73]/70"
                 />
               </label>
+              <DecorationOption id="reservation-decoration" value={decoration} onChange={setDecoration} />
               <button
                 type="submit"
                 className="group relative mt-5 min-h-[3.35rem] w-full overflow-hidden rounded-2xl border border-[#f8dca4]/50 bg-[linear-gradient(135deg,#f6d998_0%,#d6a957_48%,#f1c879_100%)] px-6 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-[#130d08] shadow-[inset_0_1px_0_rgba(255,255,255,0.58),inset_0_-10px_24px_rgba(91,49,10,0.14),0_18px_45px_rgba(230,189,115,0.18),0_2px_10px_rgba(0,0,0,0.28)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.68),inset_0_-12px_26px_rgba(91,49,10,0.12),0_26px_70px_rgba(230,189,115,0.26),0_5px_18px_rgba(0,0,0,0.32)] focus:outline-none focus:ring-2 focus:ring-[#d8b87b]/45 focus:ring-offset-2 focus:ring-offset-[#050403] active:translate-y-[1px]"

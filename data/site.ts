@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "Mangia Grill & Cream",
   shortName: "Mangia",
   description:
-    "Gastrobar premium en Aguachica con grill, cocktails, heladeria artesanal y una experiencia nocturna cinematografica.",
+    "Mangia Grill & Cream en Aguachica: carnes a la parrilla, hamburguesas, picadas, cocteles, helados y postres.",
   url: "https://www.mangiagrillandcream.com",
   address: "Carrera 12 # 3-90, Aguachica, Cesar",
   city: "Aguachica",
@@ -22,9 +22,9 @@ export const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}`;
 
 export const navItems: NavItem[] = [
   { label: "Experiencia", href: "#experience" },
-  { label: "Menu", href: "#menu" },
+  { label: "Menú", href: "#menu" },
   { label: "Cocktails", href: "#cocktails-feature" },
-  { label: "Heladeria", href: "#cream-experience" },
+  { label: "Heladería", href: "#cream-experience" },
   { label: "Reservas", href: "#reserve" },
 ];
 
