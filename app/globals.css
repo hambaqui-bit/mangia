@@ -59,6 +59,35 @@ svg {
   scroll-margin-top: 320px;
 }
 
+.mangia-entry-action {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+  transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.mangia-entry-arrow {
+  transition: transform 220ms ease, color 220ms ease;
+}
+
+@media (hover: hover) {
+  .mangia-entry-action:hover {
+    background-color: #232a26;
+    border-color: rgb(183 218 203 / 40%);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%), inset 0 1px 0 rgb(255 255 255 / 6%);
+    transform: translateY(-1px);
+  }
+
+  .mangia-entry-action:hover .mangia-entry-arrow {
+    color: #b7dacb;
+    transform: translateX(3px);
+  }
+}
+
+.mangia-entry-action:active {
+  background-color: #26312b;
+  border-color: #b7dacb;
+  transform: scale(0.98);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -67,5 +96,11 @@ svg {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  .mangia-entry-action:hover,
+  .mangia-entry-action:active,
+  .mangia-entry-action:hover .mangia-entry-arrow {
+    transform: none;
   }
 }
