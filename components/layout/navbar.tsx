@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Menu, Phone, X } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/instagram-icon";
 import { useEffect, useState } from "react";
@@ -35,12 +36,12 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#top" className="flex min-w-0 items-center gap-3" aria-label="Ir al inicio">
+        <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Ir al inicio">
           <span className="font-serif text-2xl uppercase tracking-[0.25em] text-white md:text-3xl">
             Mangia
           </span>
           <span className="hidden h-px w-12 bg-[#e6bd73]/70 md:block" />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 text-[0.68rem] font-medium uppercase tracking-[0.24em] text-white/66 lg:flex">
           {navItems.map((item, index) => (

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildGroupMessage, decorationMessage, formatPesos, orderTotal } from "../lib/group-order.ts";
+import { buildDeliveryMessage, buildGroupMessage, decorationMessage, formatPesos, orderTotal } from "../lib/group-order.ts";
 import { buildWhatsAppReservationUrl } from "../lib/utils.ts";
 
 const lines = [
@@ -58,4 +58,29 @@ test("reservations include decoration only when requested", () => {
   assert.doesNotMatch(decodeURIComponent(buildWhatsAppReservationUrl(input)), /Decoración/);
   const decoration = decorationMessage({ enabled: true, occasion: "", notes: "" });
   assert.match(new URL(buildWhatsAppReservationUrl({ ...input, decoration })).searchParams.get("text"), /Decoración: solicito cotización por WhatsApp/);
+});
+
+const delivery = { name: "Prueba", phone: "3001234567", address: "Calle de prueba 1", neighborhood: "Centro", reference: "Puerta verde", payment: "cash", cashChange: "200000", notes: "Sin cubiertos" };
+
+test("delivery message includes address, subtotal and shipping confirmation without restaurant payment", () => {
+  const message = buildDeliveryMessage(lines, delivery);
+  assert.match(message, /Precuenta de productos: \$175\.000 COP/);
+  assert.match(message, /Envío NO incluido/);
+  assert.match(message, /Barrio: Centro/);
+  assert.match(message, /Teléfono: 3001234567/);
+  assert.match(message, /Dirección: Calle de prueba 1/);
+  assert.match(message, /Referencia: Puerta verde/);
+  assert.match(message, /Forma de pago: Efectivo/);
+  assert.match(message, /Solicito cambio para: \$200\.000/);
+  assert.match(message, /NO está pagado/);
+  assert.doesNotMatch(message, /Pago al llegar|Decoración|Personas:|Hora de llegada/);
+});
+
+test("transfer asks for bank details only after confirmation and ignores stale cash amount", () => {
+  const message = buildDeliveryMessage(lines, { ...delivery, payment: "transfer" });
+  assert.match(message, /Forma de pago: Transferencia/);
+  assert.match(message, /datos para transferir después de confirmar/);
+  assert.doesNotMatch(message, /Solicito cambio/);
+  assert.doesNotMatch(buildDeliveryMessage(lines, { ...delivery, cashChange: "", reference: "", notes: "" }), /Solicito cambio|Referencia:|Notas:/);
+  assert.equal(decodeURIComponent(encodeURIComponent(message)), message);
 });

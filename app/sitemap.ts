@@ -3,6 +3,7 @@ import { siteConfig } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    ...["menu", "domicilios", "grupos", "reservas", "conoce-mangia"].map((path) => ({ url: `${siteConfig.url}/${path}`, changeFrequency: "weekly" as const, priority: 0.8 })),
     {
       url: siteConfig.url,
       lastModified: new Date("2026-05-28"),

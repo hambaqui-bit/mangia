@@ -21,8 +21,8 @@ const control = "min-h-11 w-full rounded-lg border border-white/20 bg-[#181a19] 
 
 const drinkIcons = { bebidas: GlassWater, granizados: Snowflake, "sodas-italianas": Sparkles, cervezas: Beer, cocktails: Martini };
 
-function Product({ item, showCategory = true, quantity, onQuantity }: { item: CatalogItem; showCategory?: boolean; quantity: number; onQuantity: (quantity: number) => void }) {
-  const addControl = menuPrice(item) !== null && <OrderQuantity name={`${item.name} (${item.categoryTitle})`} quantity={quantity} onChange={onQuantity} />;
+function Product({ item, showCategory = true, quantity, onQuantity, delivery = false }: { item: CatalogItem; showCategory?: boolean; quantity: number; onQuantity: (quantity: number) => void; delivery?: boolean }) {
+  const addControl = menuPrice(item) !== null && <OrderQuantity name={`${item.name} (${item.categoryTitle})`} quantity={quantity} onChange={onQuantity} delivery={delivery} />;
   if (item.group === "drinks" && !item.image) {
     return (
       <article data-menu-product className="min-w-0 border-b border-white/15 py-4">
@@ -66,7 +66,8 @@ function Product({ item, showCategory = true, quantity, onQuantity }: { item: Ca
   );
 }
 
-export function MenuExperience() {
+export function MenuExperience({ purpose = "browse" }: { purpose?: "browse" | "group" | "delivery" }) {
+  const delivery = purpose === "delivery";
   const [query, setQuery] = useState("");
   const [group, setGroup] = useState<MenuGroup>("all");
   const [category, setCategory] = useState("featured");
@@ -108,8 +109,9 @@ export function MenuExperience() {
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="mb-2 text-sm font-medium text-[#96c5b2]">Menú Mangia</p>
-            <h2 id="menu-title" className="font-serif text-4xl leading-tight text-white md:text-5xl">¿Qué se te antoja hoy?</h2>
+            <p className="mb-2 text-sm font-medium text-[#96c5b2]">{delivery ? "Domicilios Mangia" : "Menú Mangia"}</p>
+            <h2 id="menu-title" className="font-serif text-4xl leading-tight text-white md:text-5xl">{delivery ? "Pide a domicilio" : purpose === "group" ? "Arma el pedido de tu grupo" : "¿Qué se te antoja hoy?"}</h2>
+            {delivery && <p className="mt-3 max-w-lg text-sm leading-6 text-white/70">Domiciliario propio · Efectivo o transferencia<br />Cobertura y valor de envío por confirmar por WhatsApp.</p>}
           </div>
           <div className="flex flex-col gap-3">
             <a href={siteConfig.instagram} target="_blank" rel="noreferrer" className="flex min-h-11 items-center gap-3 text-[#f4b6cc] hover:text-[#ffe1ec] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4b6cc]">
@@ -163,7 +165,7 @@ export function MenuExperience() {
               </select>
             </div>
             <div className="col-span-2 self-end lg:col-span-1">
-              <GroupOrder lines={lines} onQuantity={changeQuantity} onNote={changeNote} />
+              <GroupOrder lines={lines} onQuantity={changeQuantity} onNote={changeNote} mode={delivery ? "delivery" : "group"} />
             </div>
           </div>
         </div>
@@ -187,7 +189,7 @@ export function MenuExperience() {
                     <h3 className="text-lg font-semibold text-white">{items[0].categoryTitle}</h3>
                   </div>}
                   <div className={cn("grid items-start gap-x-10", hasPhotos ? "gap-y-4 sm:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2")}>
-                    {items.map((item) => <Product key={item.key} item={item} showCategory={false} quantity={selection[item.key]?.quantity ?? 0} onQuantity={(quantity) => changeQuantity(item.key, quantity)} />)}
+                    {items.map((item) => <Product key={item.key} item={item} showCategory={false} quantity={selection[item.key]?.quantity ?? 0} onQuantity={(quantity) => changeQuantity(item.key, quantity)} delivery={delivery} />)}
                   </div>
                 </section>
               );
@@ -195,7 +197,7 @@ export function MenuExperience() {
           </div>
         ) : results.length ? (
           <div className={cn("grid items-start gap-x-6 gap-y-4", group === "drinks" ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3")}>
-            {results.map((item) => <Product key={item.key} item={item} quantity={selection[item.key]?.quantity ?? 0} onQuantity={(quantity) => changeQuantity(item.key, quantity)} />)}
+            {results.map((item) => <Product key={item.key} item={item} quantity={selection[item.key]?.quantity ?? 0} onQuantity={(quantity) => changeQuantity(item.key, quantity)} delivery={delivery} />)}
           </div>
         ) : (
           <div className="py-12 text-center">

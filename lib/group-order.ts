@@ -28,6 +28,38 @@ export type GroupDetails = {
   decoration?: DecorationRequest;
 };
 
+export type DeliveryDetails = {
+  name: string;
+  phone: string;
+  address: string;
+  neighborhood: string;
+  reference: string;
+  payment: "cash" | "transfer";
+  cashChange: string;
+  notes: string;
+};
+
+export function buildDeliveryMessage(lines: OrderLine[], details: DeliveryDetails): string {
+  return [
+    "*Pedido a domicilio para confirmar - Mangia*",
+    `Nombre: ${details.name.trim()}`,
+    `Teléfono: ${details.phone.trim()}`,
+    `Dirección: ${details.address.trim()}`,
+    `Barrio: ${details.neighborhood.trim()}`,
+    ...(details.reference.trim() ? [`Referencia: ${details.reference.trim()}`] : []),
+    "",
+    ...lines.map((line) => `${line.quantity} x ${line.name} (${line.category})\n${formatPesos(line.unitPrice)} c/u = ${formatPesos(line.unitPrice * line.quantity)}${line.note.trim() ? "\nNota: " + line.note.trim() : ""}`),
+    "",
+    `*Precuenta de productos: ${formatPesos(orderTotal(lines))} COP*`,
+    "Envío NO incluido. Cobertura, costo de envío, disponibilidad y tiempo estimado por confirmar por WhatsApp.",
+    `Forma de pago: ${details.payment === "cash" ? "Efectivo" : "Transferencia"}`,
+    ...(details.payment === "cash" && Number(details.cashChange) > 0 ? [`Solicito cambio para: ${formatPesos(Number(details.cashChange))}`] : []),
+    ...(details.payment === "transfer" ? ["Solicito los datos para transferir después de confirmar el pedido."] : []),
+    ...(details.notes.trim() ? [`Notas: ${details.notes.trim()}`] : []),
+    "Este pedido NO está pagado. Valor total y condiciones de pago por confirmar con Mangia.",
+  ].join("\n");
+}
+
 export const formatPesos = (amount: number) => "$" + new Intl.NumberFormat("es-CO").format(amount);
 
 export function orderTotal(lines: OrderLine[]): number {
