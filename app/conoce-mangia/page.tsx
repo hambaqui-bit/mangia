@@ -2,6 +2,7 @@ import { Footer } from "@/components/layout/footer";
 import { RestaurantJsonLd } from "@/components/layout/json-ld";
 import { Navbar } from "@/components/layout/navbar";
 import { GallerySection } from "@/components/gallery/gallery-section";
+import { ExperienceStories } from "@/components/gallery/experience-stories";
 import { MenuExperience } from "@/components/menu/menu-experience";
 import { CocktailsSection } from "@/components/sections/cocktails";
 import { FinalCta } from "@/components/sections/final-cta";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <Navbar />
       <main className="overflow-x-clip bg-[#050403] text-white">
         <Hero />
+        <ExperienceStories />
         <Storytelling />
         <MenuExperience />
         <CocktailsSection />

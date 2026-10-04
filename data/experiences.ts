@@ -1,0 +1,16 @@
+export const experiences = [
+  { src: "/images/experiencias/IMG_1015.webp", alt: "Recuerdo de una visita en grupo a Mangia" },
+  { src: "/images/experiencias/IMG_1014.webp", alt: "Una visitante en el rincón de fotos de Mangia" },
+  { src: "/images/experiencias/IMG_1013.webp", alt: "Una visitante con su mascota en la terraza de Mangia" },
+  { src: "/images/experiencias/IMG_1012.webp", alt: "Una visita familiar a Mangia" },
+  { src: "/images/experiencias/IMG_1011.webp", alt: "Recuerdo compartido desde el rincón de fotos de Mangia" },
+  { src: "/images/experiencias/IMG_1010.webp", alt: "Una pareja compartiendo una mesa decorada en Mangia" },
+  { src: "/images/experiencias/IMG_1009.webp", alt: "Recuerdos de una celebración con torta en Mangia" },
+  { src: "/images/experiencias/IMG_1008.webp", alt: "Comida y recuerdos de una mesa compartida en Mangia" },
+  { src: "/images/experiencias/IMG_1007.webp", alt: "Recuerdos de una visita con amigas a Mangia" },
+  { src: "/images/experiencias/IMG_1006.webp", alt: "Visitantes disfrutando bebidas en Mangia" },
+  { src: "/images/experiencias/IMG_1005.webp", alt: "Una visitante junto a la fuente de Mangia" },
+  { src: "/images/experiencias/IMG_1004.webp", alt: "Recuerdos del ambiente y la comida de Mangia" },
+  { src: "/images/experiencias/IMG_1003.webp", alt: "Comida y momentos compartidos en Mangia" },
+  { src: "/images/experiencias/IMG_1002.webp", alt: "Recuerdos de una visita y los espacios de Mangia" },
+] as const;

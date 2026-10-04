@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Beer, GlassWater, IceCreamBowl, LayoutGrid, Martini, Search, Snowflake, Sparkles, UtensilsCrossed, X, ChevronDown, FilterX } from "lucide-react";
+import { Beer, GlassWater, IceCreamBowl, LayoutGrid, Martini, Search, Snowflake, Sparkles, Truck, Users, UtensilsCrossed, X, ChevronDown, FilterX } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/instagram-icon";
 import { GroupOrder, OrderQuantity } from "@/components/menu/group-order";
 import { useMemo, useRef, useState } from "react";
@@ -11,6 +11,11 @@ import { createCatalog, filterCatalog, menuPrice, type CatalogItem, type MenuGro
 import { cn } from "@/lib/utils";
 
 const catalog = createCatalog(menuCategories);
+const purposes = [
+  { id: "browse", label: "Ver carta", icon: UtensilsCrossed },
+  { id: "delivery", label: "Domicilio", icon: Truck },
+  { id: "group", label: "Grupos", icon: Users },
+] as const;
 const groups = [
   { id: "food", label: "Comida", icon: UtensilsCrossed },
   { id: "drinks", label: "Bebidas", icon: GlassWater },
@@ -21,8 +26,8 @@ const control = "min-h-11 w-full rounded-lg border border-white/20 bg-[#181a19] 
 
 const drinkIcons = { bebidas: GlassWater, granizados: Snowflake, "sodas-italianas": Sparkles, cervezas: Beer, cocktails: Martini };
 
-function Product({ item, showCategory = true, quantity, onQuantity, delivery = false }: { item: CatalogItem; showCategory?: boolean; quantity: number; onQuantity: (quantity: number) => void; delivery?: boolean }) {
-  const addControl = menuPrice(item) !== null && <OrderQuantity name={`${item.name} (${item.categoryTitle})`} quantity={quantity} onChange={onQuantity} delivery={delivery} />;
+function Product({ item, showCategory = true, quantity, onQuantity, delivery = false, ordering }: { item: CatalogItem; showCategory?: boolean; quantity: number; onQuantity: (quantity: number) => void; delivery?: boolean; ordering: boolean }) {
+  const addControl = ordering && menuPrice(item) !== null && <OrderQuantity name={`${item.name} (${item.categoryTitle})`} quantity={quantity} onChange={onQuantity} delivery={delivery} />;
   if (item.group === "drinks" && !item.image) {
     return (
       <article data-menu-product className="min-w-0 border-b border-white/15 py-4">
@@ -67,7 +72,9 @@ function Product({ item, showCategory = true, quantity, onQuantity, delivery = f
 }
 
 export function MenuExperience({ purpose = "browse" }: { purpose?: "browse" | "group" | "delivery" }) {
-  const delivery = purpose === "delivery";
+  const [selectedPurpose, setSelectedPurpose] = useState(purpose);
+  const delivery = selectedPurpose === "delivery";
+  const ordering = selectedPurpose !== "browse";
   const [query, setQuery] = useState("");
   const [group, setGroup] = useState<MenuGroup>("all");
   const [category, setCategory] = useState("featured");
@@ -109,8 +116,8 @@ export function MenuExperience({ purpose = "browse" }: { purpose?: "browse" | "g
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="mb-2 text-sm font-medium text-[#96c5b2]">{delivery ? "Domicilios Mangia" : "Menú Mangia"}</p>
-            <h2 id="menu-title" className="font-serif text-4xl leading-tight text-white md:text-5xl">{delivery ? "Pide a domicilio" : purpose === "group" ? "Arma el pedido de tu grupo" : "¿Qué se te antoja hoy?"}</h2>
+            <p className="mb-2 text-sm font-medium text-[#96c5b2]">{delivery ? "Domicilios Mangia" : "Menú y pedidos"}</p>
+            <h2 id="menu-title" className="font-serif text-4xl leading-tight text-white md:text-5xl">{delivery ? "Pide a domicilio" : selectedPurpose === "group" ? "Arma el pedido de tu grupo" : "¿Qué se te antoja hoy?"}</h2>
             {delivery && <p className="mt-3 max-w-lg text-sm leading-6 text-white/70">Domiciliario propio · Efectivo o transferencia<br />Cobertura y valor de envío por confirmar por WhatsApp.</p>}
           </div>
           <div className="flex flex-col gap-3">
@@ -120,6 +127,14 @@ export function MenuExperience({ purpose = "browse" }: { purpose?: "browse" | "g
             </a>
             <p className="text-xs text-white/65">Precios en pesos colombianos</p>
           </div>
+        </div>
+
+        <div role="group" aria-label="Modalidad del menú" className="mb-6 grid grid-cols-3 gap-1 rounded-lg bg-[#202622] p-1">
+          {purposes.map(({ id, label, icon: Icon }) => (
+            <button key={id} type="button" aria-pressed={selectedPurpose === id} onClick={() => setSelectedPurpose(id)} className={cn("flex min-h-12 items-center justify-center gap-2 rounded-md px-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b7dacb]", selectedPurpose === id ? "bg-[#b7dacb] text-[#102b20]" : "text-white/80 hover:bg-white/10")}>
+              <Icon className="hidden h-4 w-4 shrink-0 min-[390px]:block" aria-hidden="true" />{label}
+            </button>
+          ))}
         </div>
 
         <div className="sticky top-[68px] z-30 -mx-4 border-y border-white/15 bg-[#101312] px-4 py-3 sm:-mx-1 sm:px-1">
@@ -147,7 +162,7 @@ export function MenuExperience({ purpose = "browse" }: { purpose?: "browse" | "g
             ))}
           </div>
 
-          <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,135px)] gap-2 sm:grid-cols-[minmax(0,1fr)_200px] lg:grid-cols-[minmax(0,1fr)_200px_auto]">
+          <div className={cn("grid grid-cols-[minmax(0,1fr)_minmax(0,135px)] gap-2 sm:grid-cols-[minmax(0,1fr)_200px]", ordering && "lg:grid-cols-[minmax(0,1fr)_200px_auto]")}>
             <div className="min-w-0">
               <label htmlFor="menu-category" className="mb-1 block text-xs text-white/65">Categoría</label>
               <select id="menu-category" value={category} onChange={(event) => setCategory(event.target.value)} className={control}>
@@ -164,9 +179,9 @@ export function MenuExperience({ purpose = "browse" }: { purpose?: "browse" | "g
                 <option value="price-desc">Mayor precio</option>
               </select>
             </div>
-            <div className="col-span-2 self-end lg:col-span-1">
+            {ordering && <div className="col-span-2 self-end lg:col-span-1">
               <GroupOrder lines={lines} onQuantity={changeQuantity} onNote={changeNote} mode={delivery ? "delivery" : "group"} />
-            </div>
+            </div>}
           </div>
         </div>
 
@@ -189,7 +204,7 @@ export function MenuExperience({ purpose = "browse" }: { purpose?: "browse" | "g
                     <h3 className="text-lg font-semibold text-white">{items[0].categoryTitle}</h3>
                   </div>}
                   <div className={cn("grid items-start gap-x-10", hasPhotos ? "gap-y-4 sm:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2")}>
-                    {items.map((item) => <Product key={item.key} item={item} showCategory={false} quantity={selection[item.key]?.quantity ?? 0} onQuantity={(quantity) => changeQuantity(item.key, quantity)} delivery={delivery} />)}
+                    {items.map((item) => <Product key={item.key} item={item} showCategory={false} quantity={selection[item.key]?.quantity ?? 0} onQuantity={(quantity) => changeQuantity(item.key, quantity)} delivery={delivery} ordering={ordering} />)}
                   </div>
                 </section>
               );
@@ -197,7 +212,7 @@ export function MenuExperience({ purpose = "browse" }: { purpose?: "browse" | "g
           </div>
         ) : results.length ? (
           <div className={cn("grid items-start gap-x-6 gap-y-4", group === "drinks" ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3")}>
-            {results.map((item) => <Product key={item.key} item={item} quantity={selection[item.key]?.quantity ?? 0} onQuantity={(quantity) => changeQuantity(item.key, quantity)} delivery={delivery} />)}
+            {results.map((item) => <Product key={item.key} item={item} quantity={selection[item.key]?.quantity ?? 0} onQuantity={(quantity) => changeQuantity(item.key, quantity)} delivery={delivery} ordering={ordering} />)}
           </div>
         ) : (
           <div className="py-12 text-center">
