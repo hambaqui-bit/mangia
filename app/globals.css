@@ -54,6 +54,27 @@ svg {
   transform: rotate(180deg);
 }
 
+.dine-in-menu,
+.dine-in-menu * {
+  letter-spacing: 0;
+}
+
+.carta-categories {
+  scrollbar-width: none;
+}
+
+.carta-categories::-webkit-scrollbar {
+  display: none;
+}
+
+.carta-section {
+  scroll-margin-top: 180px;
+}
+
+.carta-product {
+  overscroll-behavior: contain;
+}
+
 .menu-browser summary,
 .menu-browser button {
   scroll-margin-top: 320px;

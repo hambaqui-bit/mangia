@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { ActionHeader } from "@/components/layout/action-header";
-import { MenuExperience } from "@/components/menu/menu-experience";
+import { DineInMenu } from "@/components/menu/dine-in-menu";
 
 export const metadata: Metadata = { title: "Menú y pedidos", alternates: { canonical: "/menu" } };
 
 export default function Page() {
-  return <><ActionHeader /><main><MenuExperience /></main></>;
+  return <><ActionHeader /><main><DineInMenu /></main></>;
 }
