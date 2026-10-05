@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, ChevronRight, Search, X } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronRight, Image as ImageIcon, Search, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { menuCategories } from "@/data/menu";
 import { createCatalog, filterCatalog, type CatalogItem } from "@/lib/menu-catalog";
@@ -13,6 +13,11 @@ const catalog = menuCategories.flatMap((category) => createCatalog([category]).m
 ));
 const categories = Array.from(new Map(catalog.map((item) => [item.categoryId, item.categoryTitle])));
 const flavorGuide = catalog.find((item) => item.categoryId === "sabores" && item.image)?.image;
+const flavorPresentations = [
+  ["Cono de 1 bola", "Cono 1 bola Gourmet", "Cono 1 bola Exclusivo"],
+  ["Cono de 2 bolas", "Cono 2 bolas Gourmet", "Cono 2 bolas Exclusivo"],
+  ["Bola adicional", "Bola adicional Gourmet", "Bola adicional Exclusivo"],
+] as const;
 const focus = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b7dacb]";
 
 export function DineInMenu() {
@@ -122,13 +127,32 @@ export function DineInMenu() {
               <p className="text-sm leading-6 text-white/75">{id === "cones" ? "Conos Gourmet y Exclusivos: el precio depende del tipo de helado." : "Bolas adicionales: el precio depende del tipo de helado, Gourmet o Exclusivo."}</p>
               {sections.some((section) => section.id === "sabores") && <a href="#carta-sabores" className={cn("inline-flex min-h-11 items-center gap-2 text-sm text-[#b7dacb]", focus)}>Ver sabores Gourmet y Exclusivos <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>}
             </div>}
-            {id === "sabores" && <>
-              <p className="mb-4 text-sm leading-6 text-white/75">{items[0].categoryDescription}</p>
-              {flavorGuide && <figure className="mb-5 max-w-lg">
+            {id === "sabores" ? <>
+              <p className="mb-5 text-base leading-6 text-white/75">{items[0].categoryDescription}</p>
+              <div className="grid gap-6 sm:grid-cols-2 sm:gap-10">
+                {items.map((item) => <article key={item.key} data-menu-product className="min-w-0 border-b border-white/20 pb-5">
+                  <h3 className="mb-3 text-2xl font-semibold leading-8">{item.name}</h3>
+                  <p className="text-base leading-7 text-white/85">{item.description}</p>
+                  <dl className="mt-4 space-y-3">
+                    {flavorPresentations.map(([label, gourmet, exclusive]) => {
+                      const price = catalog.find((option) => option.name === (item.name === "Gourmet" ? gourmet : exclusive))?.price;
+                      return price && <div key={label} className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4 text-base">
+                        <dt className="text-white/80">{label}</dt>
+                        <dd className="font-semibold tabular-nums text-[#f0d49a]">{price}</dd>
+                      </div>;
+                    })}
+                  </dl>
+                </article>)}
+              </div>
+              <div className="mt-4 flex flex-wrap gap-x-6">
+                {sections.some((section) => section.id === "cones") && <a href="#carta-cones" className={cn("inline-flex min-h-11 items-center gap-2 text-sm text-[#b7dacb]", focus)}>Ver conos <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>}
+                {sections.some((section) => section.id === "toppings") && <a href="#carta-toppings" className={cn("inline-flex min-h-11 items-center gap-2 text-sm text-[#b7dacb]", focus)}>Ver bolas adicionales <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>}
+              </div>
+              {flavorGuide && <details className="mt-3 max-w-lg border-t border-white/15">
+                <summary className={cn("flex min-h-12 cursor-pointer list-none items-center gap-3 text-base text-white/85 [&::-webkit-details-marker]:hidden", focus)}><ImageIcon className="h-5 w-5" aria-hidden="true" />Foto de los sabores<ChevronDown className="ml-auto h-4 w-4" aria-hidden="true" /></summary>
                 <Image src={flavorGuide} alt="Sabores de helado Gourmet y Exclusivos de Mangia" width={1093} height={1224} sizes="(max-width: 639px) calc(100vw - 32px), 512px" className="h-auto w-full" />
-              </figure>}
-            </>}
-            <div className="grid items-start gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+              </details>}
+            </> : <div className="grid items-start gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
               {items.map((item) => (
                 <article key={item.key} data-menu-product className={cn("min-w-0", item.image && id !== "sabores" ? "overflow-hidden rounded-lg border border-white/15 bg-[#181a19]" : "border-b border-white/15")}>
                   <button type="button" onClick={() => setProduct(item)} aria-label={`Ver ${item.name}, ${item.price ?? item.categoryTitle}`} aria-haspopup="dialog" className={cn("block w-full text-left focus-visible:outline-offset-[-3px]", focus)}>
@@ -146,7 +170,7 @@ export function DineInMenu() {
                   </button>
                 </article>
               ))}
-            </div>
+            </div>}
             {!query.trim() && items[0].group === "food" && sections[sectionIndex + 1]?.items[0].group === "drinks" && <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-white/15 py-3 text-sm">
               <a href="#carta-bebidas" className={cn("flex min-h-11 items-center gap-2 text-[#b7dacb]", focus)}>Para acompañar <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
               <a href="#carta-desserts" className={cn("flex min-h-11 items-center gap-2 text-[#f4b6cc]", focus)}>¿Algo dulce para cerrar? <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>
