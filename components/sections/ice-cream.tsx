@@ -46,10 +46,10 @@ export function IceCreamExperience() {
           </div>
           <Reveal>
             <Image
-              src="/images/Heladeria/sabores.jpg"
+              src="/images/Heladeria/sabores-actualizados.png"
               alt="Sabores de helado Gourmet y Exclusivos de Mangia"
-              width={1093}
-              height={1224}
+              width={1414}
+              height={2000}
               className="mx-auto h-auto w-full max-w-xl rounded-lg"
               sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 576px, 50vw"
             />

@@ -150,7 +150,7 @@ export function DineInMenu() {
               </div>
               {flavorGuide && <details className="mt-3 max-w-lg border-t border-white/15">
                 <summary className={cn("flex min-h-12 cursor-pointer list-none items-center gap-3 text-base text-white/85 [&::-webkit-details-marker]:hidden", focus)}><ImageIcon className="h-5 w-5" aria-hidden="true" />Foto de los sabores<ChevronDown className="ml-auto h-4 w-4" aria-hidden="true" /></summary>
-                <Image src={flavorGuide} alt="Sabores de helado Gourmet y Exclusivos de Mangia" width={1093} height={1224} sizes="(max-width: 639px) calc(100vw - 32px), 512px" className="h-auto w-full" />
+                <Image src={flavorGuide} alt="Sabores de helado Gourmet y Exclusivos de Mangia" width={1414} height={2000} sizes="(max-width: 639px) calc(100vw - 32px), 512px" className="h-auto w-full" />
               </details>}
             </> : <div className="grid items-start gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
               {items.map((item) => (

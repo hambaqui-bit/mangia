@@ -464,8 +464,8 @@ export const menuCategories: MenuCategory[] = [
     description: "Elige entre sabores Gourmet y Exclusivos, según disponibilidad en vitrina.",
     tone: "cream",
     items: [
-      { name: "Gourmet", description: "Vainilla, macadamia, chocolate y frutos del bosque.", image: "/images/Heladeria/sabores.jpg" },
-      { name: "Exclusivos", description: "Cherry Mania, Juan Valdez, crema de limón, brownie, piña colada, Oreo, M&M y Milky Way." },
+      { name: "Gourmet", description: "Vainilla, macadamia, chocolate y frutos del bosque.", image: "/images/Heladeria/sabores-actualizados.png" },
+      { name: "Exclusivos", description: "Cherry Mania, Juan Valdez, crema de limón, brownie, macadamia, Oreo, M&M, Milky Way y vainilla chips." },
     ],
   },
 ];
