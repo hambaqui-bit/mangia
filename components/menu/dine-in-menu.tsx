@@ -12,6 +12,7 @@ const catalog = menuCategories.flatMap((category) => createCatalog([category]).m
   category.id === "brownies-con-helado" ? { ...item, categoryId: category.id, categoryTitle: category.title } : item
 ));
 const categories = Array.from(new Map(catalog.map((item) => [item.categoryId, item.categoryTitle])));
+const flavorGuide = catalog.find((item) => item.categoryId === "sabores" && item.image)?.image;
 const focus = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b7dacb]";
 
 export function DineInMenu() {
@@ -117,13 +118,23 @@ export function DineInMenu() {
               <span aria-hidden="true" className="text-xs tabular-nums text-white/55">{items.length}</span>
             </div>
             {id === "hamburguesas" && <p className="mb-4 text-sm leading-6 text-white/75">{items[0].categoryDescription}</p>}
+            {(id === "cones" || id === "toppings") && <div className="mb-4">
+              <p className="text-sm leading-6 text-white/75">{id === "cones" ? "Conos Gourmet y Exclusivos: el precio depende del tipo de helado." : "Bolas adicionales: el precio depende del tipo de helado, Gourmet o Exclusivo."}</p>
+              {sections.some((section) => section.id === "sabores") && <a href="#carta-sabores" className={cn("inline-flex min-h-11 items-center gap-2 text-sm text-[#b7dacb]", focus)}>Ver sabores Gourmet y Exclusivos <ArrowRight className="h-4 w-4" aria-hidden="true" /></a>}
+            </div>}
+            {id === "sabores" && <>
+              <p className="mb-4 text-sm leading-6 text-white/75">{items[0].categoryDescription}</p>
+              {flavorGuide && <figure className="mb-5 max-w-lg">
+                <Image src={flavorGuide} alt="Sabores de helado Gourmet y Exclusivos de Mangia" width={1093} height={1224} sizes="(max-width: 639px) calc(100vw - 32px), 512px" className="h-auto w-full" />
+              </figure>}
+            </>}
             <div className="grid items-start gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
               {items.map((item) => (
-                <article key={item.key} data-menu-product className={cn("min-w-0", item.image ? "overflow-hidden rounded-lg border border-white/15 bg-[#181a19]" : "border-b border-white/15")}>
+                <article key={item.key} data-menu-product className={cn("min-w-0", item.image && id !== "sabores" ? "overflow-hidden rounded-lg border border-white/15 bg-[#181a19]" : "border-b border-white/15")}>
                   <button type="button" onClick={() => setProduct(item)} aria-label={`Ver ${item.name}, ${item.price ?? item.categoryTitle}`} aria-haspopup="dialog" className={cn("block w-full text-left focus-visible:outline-offset-[-3px]", focus)}>
-                    <div className={cn(item.image && "grid grid-cols-[112px_minmax(0,1fr)] sm:block")}>
-                      {item.image && <div className="relative aspect-square w-28 self-start sm:aspect-[16/10] sm:w-full"><Image src={item.image} alt={item.name} fill sizes="(max-width: 639px) 112px, (max-width: 1023px) 46vw, (max-width: 1200px) 30vw, 360px" preload={item.key === catalog[0]?.key} className={item.imageFit === "contain" ? "object-contain" : "object-cover"} /></div>}
-                      <div className={item.image ? "min-w-0 p-3 sm:p-4" : "min-w-0 py-4"}>
+                    <div className={cn(item.image && id !== "sabores" && "grid grid-cols-[112px_minmax(0,1fr)] sm:block")}>
+                      {item.image && id !== "sabores" && <div className="relative aspect-square w-28 self-start sm:aspect-[16/10] sm:w-full"><Image src={item.image} alt={item.name} fill sizes="(max-width: 639px) 112px, (max-width: 1023px) 46vw, (max-width: 1200px) 30vw, 360px" preload={item.key === catalog[0]?.key} className={item.imageFit === "contain" ? "object-contain" : "object-cover"} /></div>}
+                      <div className={item.image && id !== "sabores" ? "min-w-0 p-3 sm:p-4" : "min-w-0 py-4"}>
                         <h3 className="text-base font-semibold leading-6">{item.name}</h3>
                         {item.description && <p className="mt-1.5 line-clamp-3 text-sm leading-5 text-white/75">{item.description}</p>}
                         <div className="mt-3 flex items-center justify-between gap-2">
@@ -148,8 +159,8 @@ export function DineInMenu() {
       <dialog ref={dialogRef} aria-labelledby="carta-product-name" onClose={() => setProduct(null)} onClick={(event) => { if (event.target === event.currentTarget) dialogRef.current?.close(); }} className="carta-product fixed inset-x-0 bottom-0 top-auto m-0 max-h-[85dvh] w-full max-w-none overflow-y-auto rounded-t-lg border border-white/20 bg-[#181a19] p-0 text-white backdrop:bg-black/75 sm:inset-0 sm:m-auto sm:max-w-lg sm:rounded-lg">
         {product && <div className="relative">
           <button type="button" autoFocus onClick={() => dialogRef.current?.close()} aria-label="Cerrar producto" title="Cerrar producto" className={cn("absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-lg border border-white/20 bg-[#101312] text-white", focus)}><X className="h-5 w-5" aria-hidden="true" /></button>
-          {product.image && <div className="relative aspect-[4/3] w-full"><Image src={product.image} alt={product.name} fill sizes="(max-width: 639px) 100vw, 512px" className={product.imageFit === "contain" ? "object-contain" : "object-cover"} /></div>}
-          <div className={cn("p-5 pb-8", !product.image && "pt-16")}>
+          {product.image && product.categoryId !== "sabores" && <div className="relative aspect-[4/3] w-full"><Image src={product.image} alt={product.name} fill sizes="(max-width: 639px) 100vw, 512px" className={product.imageFit === "contain" ? "object-contain" : "object-cover"} /></div>}
+          <div className={cn("p-5 pb-8", (!product.image || product.categoryId === "sabores") && "pt-16")}>
             <p className="mb-2 text-sm text-[#b7dacb]">{product.categoryTitle}</p>
             <h2 id="carta-product-name" className="pr-1 font-serif text-3xl leading-tight">{product.name}</h2>
             {product.price && <p className="mt-3 text-xl font-semibold tabular-nums text-[#f0d49a]">{product.price}</p>}
